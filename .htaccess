@@ -1,0 +1,28 @@
+DirectoryIndex index.php
+
+# ── Video streaming support ─────────────────────────────────────────────────
+# Tell Apache to send proper MIME type for MP4 so browsers can play it
+AddType video/mp4 .mp4
+
+# Allow byte-range requests so browsers can seek/stream the video
+<IfModule mod_headers.c>
+    <FilesMatch "\.(mp4|webm|ogg)$">
+        Header set Accept-Ranges bytes
+        Header set Cache-Control "public, max-age=31536000"
+    </FilesMatch>
+</IfModule>
+# ────────────────────────────────────────────────────────────────────────────
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+RewriteRule ^about/?$ about.php [L]
+RewriteRule ^services/?$ services.php [L]
+RewriteRule ^services/([a-z0-9-]+)/?$ service.php?slug=$1 [L,QSA]
+RewriteRule ^projects/?$ projects.php [L]
+RewriteRule ^projects/([a-z0-9-]+)/?$ project.php?slug=$1 [L,QSA]
+RewriteRule ^gallery/?$ gallery.php [L]
+RewriteRule ^contact/?$ contact.php [L]
