@@ -1,33 +1,10 @@
 </main>
 
 <footer class="site-footer">
-    <!-- Decorative top border wave -->
-    <div class="footer-wave" aria-hidden="true">
-        <svg viewBox="0 0 1440 32" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 16 C360 0 720 32 1080 16 S1440 0 1440 16 V32 H0Z" fill="rgba(181,154,114,0.18)"/><path d="M0 20 C360 4 720 36 1080 20 S1440 4 1440 20 V32 H0Z" fill="rgba(181,154,114,0.10)"/></svg>
-    </div>
-
     <div class="footer-top">
         <div class="footer-brand">
             <a class="wordmark wordmark--footer" href="<?= cr_e(cr_url('')) ?>">CASA <em>RIVA</em></a>
             <p>Interior architecture and interior design. Rooms composed for living — in a British and European register of light, material and proportion.</p>
-
-            <!-- Mini stats in footer -->
-            <div class="footer-mini-stats">
-                <div class="footer-mini-stat">
-                    <span class="footer-mini-stat__val">2500+</span>
-                    <span class="footer-mini-stat__lbl">Projects</span>
-                </div>
-                <div class="footer-mini-stat">
-                    <span class="footer-mini-stat__val">15+</span>
-                    <span class="footer-mini-stat__lbl">Cities</span>
-                </div>
-                <div class="footer-mini-stat">
-                    <span class="footer-mini-stat__val">4.9★</span>
-                    <span class="footer-mini-stat__lbl">Rating</span>
-                </div>
-            </div>
-
-            <a class="btn btn-ghost footer-cta-btn" href="<?= cr_e(cr_url('contact')) ?>">Book 3D Design Session</a>
 
             <ul class="social-icons" aria-label="Follow CASA RIVA">
                 <li>
@@ -67,18 +44,30 @@
             </ul>
         </div>
 
-        <div class="footer-col">
+        <div class="footer-col footer-enquire">
             <h2>Enquire</h2>
-            <p>Tell us about the house and how you live in it. We will reply personally.</p>
             <a class="btn btn-ghost footer-enquire-btn" href="<?= cr_e(cr_url('contact')) ?>">Get Estimate</a>
             <div class="footer-contact-lines">
                 <p>
                     <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14.65 10.85l-2-.2a1.36 1.36 0 0 0-1.12.38l-1.45 1.45a10.55 10.55 0 0 1-4.57-4.57l1.46-1.46a1.36 1.36 0 0 0 .38-1.12l-.2-2A1.37 1.37 0 0 0 5.79 2H3.84A1.36 1.36 0 0 0 2.5 3.52 11.82 11.82 0 0 0 12.48 13.5a1.36 1.36 0 0 0 1.52-1.34v-1.95a1.37 1.37 0 0 0-1.35-1.36Z"/></svg>
-                    <a href="tel:+91XXXXXXXXXX">+91 XXXXX XXXXX</a>
+                    <span class="footer-contact-entry">
+                        <span class="footer-contact-label">Call us</span>
+                        <a href="tel:+919005952202">+91 90059 52202</a>
+                    </span>
                 </p>
                 <p>
                     <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 3h12c.6 0 1 .4 1 1v8c0 .6-.4 1-1 1H2c-.6 0-1-.4-1-1V4c0-.6.4-1 1-1z"/><path d="M15 4l-7 5-7-5"/></svg>
-                    <a href="mailto:xxxx@gmail.com">xxxx@gmail.com</a>
+                    <span class="footer-contact-entry">
+                        <span class="footer-contact-label">Email</span>
+                        <a href="mailto:care.casariva@gmail.com">care.casariva@gmail.com</a>
+                    </span>
+                </p>
+                <p>
+                    <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M13 6.5c0 3.5-5 8-5 8s-5-4.5-5-8a5 5 0 1 1 10 0Z"/><circle cx="8" cy="6.5" r="1.5"/></svg>
+                    <span class="footer-contact-entry">
+                        <span class="footer-contact-label">Visit us</span>
+                        <a href="https://www.google.com/maps/search/?api=1&amp;query=Venture%20X%20Landmark%20Tower%20Sector%2068%20Gurugram%20Haryana%20122101" target="_blank" rel="noopener noreferrer">Venture X, Landmark Tower,<br>Sector 68, Gurugram 122101</a>
+                    </span>
                 </p>
             </div>
         </div>

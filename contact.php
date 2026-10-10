@@ -165,7 +165,7 @@ if (!isset($old['phone']) && isset($_GET['phone'])) {
             </div>
             <div>
                 <h3>Call Us</h3>
-                <p><a href="tel:+91XXXXXXXXXX">+91 XXXXX XXXXX</a></p>
+                <p><a href="tel:+919005952202">+91 90059 52202</a></p>
                 <p>Mon – Sat, 9am – 7pm</p>
             </div>
         </div>
@@ -175,7 +175,7 @@ if (!isset($old['phone']) && isset($_GET['phone'])) {
             </div>
             <div>
                 <h3>Write to Us</h3>
-                <p><a href="mailto:xxxx@gmail.com">xxxx@gmail.com</a></p>
+                <p><a href="mailto:care.casariva@gmail.com">care.casariva@gmail.com</a></p>
                 <p>We reply within 24 hours</p>
             </div>
         </div>
@@ -191,12 +191,11 @@ if (!isset($old['phone']) && isset($_GET['phone'])) {
         </div>
         <div class="contact-info-item" data-reveal>
             <div class="contact-info-item__icon contact-info-item__icon--calendar">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 10H3M16 2v4M8 2v4M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6Z"/></svg>
             </div>
             <div>
-                <h3>Book a Session</h3>
-                <p>Free 3D design consultation</p>
-                <p>At your schedule, your city</p>
+                <h3>Visit Us</h3>
+                <p><a href="https://www.google.com/maps/search/?api=1&query=Venture+X+Landmark+Tower+Sector+68+Gurugram+Haryana+122101" target="_blank" rel="noopener noreferrer">Venture X, Landmark Tower,<br>Sector 68, Gurugram 122101</a></p>
             </div>
         </div>
     </div>
@@ -251,13 +250,6 @@ if (!isset($old['phone']) && isset($_GET['phone'])) {
         <div class="contact-cta-band__actions">
             <a class="btn contact-cta-band__btn-primary" href="<?= cr_e(cr_url('contact')) ?>#top">Book 3D Design Session</a>
             <a class="btn contact-cta-band__btn-secondary" href="<?= cr_e(cr_url('gallery')) ?>">See the Design Gallery</a>
-        </div>
-        <div class="contact-cta-band__stats">
-            <div><strong>2500+</strong><span>Projects Delivered</span></div>
-            <div class="contact-cta-band__divider" aria-hidden="true"></div>
-            <div><strong>15+</strong><span>Cities Across India</span></div>
-            <div class="contact-cta-band__divider" aria-hidden="true"></div>
-            <div><strong>4.9 ★</strong><span>Client Rating</span></div>
         </div>
     </div>
 </section>

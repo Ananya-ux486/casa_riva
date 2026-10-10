@@ -9,7 +9,7 @@
         const overlayMode = header.classList.contains("is-overlay");
         if (window.scrollY > 40) {
             header.classList.add("is-scrolled");
-        } else if (overlayMode) {
+        } else {
             header.classList.remove("is-scrolled");
         }
     };
@@ -128,6 +128,24 @@
             cards.forEach((card) => {
                 const show = value === "all" || card.getAttribute("data-category") === value;
                 card.classList.toggle("hidden-card", !show);
+            });
+        });
+    });
+
+    const processSteps = document.querySelectorAll("[data-process-step]");
+    const processPanels = document.querySelectorAll("[data-process-panel]");
+    processSteps.forEach((button) => {
+        button.addEventListener("click", () => {
+            const selectedStep = button.getAttribute("data-process-step");
+            processSteps.forEach((stepButton) => {
+                const isActive = stepButton === button;
+                stepButton.classList.toggle("is-active", isActive);
+                stepButton.setAttribute("aria-pressed", String(isActive));
+            });
+            processPanels.forEach((panel, index) => {
+                const isActive = String(index) === selectedStep;
+                panel.hidden = !isActive;
+                panel.classList.toggle("is-in", isActive);
             });
         });
     });

@@ -20,9 +20,14 @@ $featured_services = array_slice($CR_SERVICES, 0, 3);
                 <a class="btn" href="<?= cr_e(cr_url('gallery')) ?>">Design Gallery</a>
             </div>
         </div>
+    </div>
+</section>
+
+<section class="section section-cream home-booking" aria-labelledby="home-booking-title">
+    <div class="wrap">
         <aside class="session-card" data-reveal>
             <p class="session-card__kicker">Design for every budget</p>
-            <h2>Book a 3D design session</h2>
+            <h2 id="home-booking-title">Book a 3D design session</h2>
             <p>Tell us who to reach and your property city — we will arrange a complimentary walkthrough of how the house could live.</p>
             <form class="session-card__form" action="<?= cr_e(cr_url('contact')) ?>" method="get">
                 <label class="visually-hidden" for="hero-name">Your name</label>
@@ -53,50 +58,6 @@ $featured_services = array_slice($CR_SERVICES, 0, 3);
             </form>
             <span class="session-card__badge">Free<br>Gift</span>
         </aside>
-    </div>
-</section>
-
-<!-- ===== TRUSTED PARTNERS ===== -->
-<section class="partners-wrap" aria-labelledby="partners-title">
-    <div class="wrap">
-        <div class="partners" data-partners>
-            <h2 id="partners-title" class="partners-title">Our Trusted Partners</h2>
-            <div class="partners-viewport">
-                <?php foreach ($CR_PARTNER_SLIDES as $i => $slide): ?>
-                    <ul class="partners-slide<?= $i === 0 ? ' is-on' : '' ?>" data-partner-slide>
-                        <?php foreach ($slide as $partner): ?>
-                            <li>
-                                <div class="partner-logo-wrap" aria-label="<?= cr_e($partner['name']) ?>">
-                                    <div class="partner-logo-svg"><?= $partner['logo'] ?></div>
-                                    <span class="partner-logo-name"><?= cr_e($partner['name']) ?></span>
-                                </div>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                <?php endforeach; ?>
-            </div>
-            <div class="partners-dots" role="tablist" aria-label="Partner slides">
-                <?php foreach ($CR_PARTNER_SLIDES as $i => $slide): ?>
-                    <button type="button" class="partners-dot<?= $i === 0 ? ' is-on' : '' ?>" data-partner-dot aria-label="Show partner group <?= $i + 1 ?>"></button>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ===== STUDIO INTRO ===== -->
-<section class="section section-ivory">
-    <div class="wrap split">
-        <div class="media media--portrait" data-reveal>
-            <img src="<?= cr_e(cr_img('renovation-01.jpg')) ?>" alt="Renovated drawing room with panelling, fireplace and contemporary seating" width="900" height="1125" loading="eager">
-        </div>
-        <div class="split-copy" data-reveal>
-            <span class="kicker">The studio</span>
-            <h2>Interior architecture for houses that are meant to be lived in.</h2>
-            <p>CASA RIVA plans, designs and executes interiors with a single language of proportion, material and light. The work is calm, exact and complete — from first conversation through the last object placed in the room.</p>
-            <p>Smart planning, transparent pricing and expert execution remain the measure of every project, in more than fifteen cities across India.</p>
-            <a class="btn btn-dark" href="<?= cr_e(cr_url('about')) ?>">About the studio</a>
-        </div>
     </div>
 </section>
 
@@ -135,17 +96,26 @@ $featured_services = array_slice($CR_SERVICES, 0, 3);
             <p class="lede">From the first conversation to handing over the keys — every step is held with the same care as the final room.</p>
         </div>
 
-        <!-- Step connector line (desktop) -->
-        <div class="dp-steps" role="list">
+        <div class="dp-step-select" role="group" aria-label="Choose a design process step">
+            <button class="dp-step-select__button is-active" type="button" data-process-step="0" aria-controls="dp-panel-1" aria-pressed="true">
+                <span>01</span> Consultation
+            </button>
+            <button class="dp-step-select__button" type="button" data-process-step="1" aria-controls="dp-panel-2" aria-pressed="false">
+                <span>02</span> Design &amp; Planning
+            </button>
+            <button class="dp-step-select__button" type="button" data-process-step="2" aria-controls="dp-panel-3" aria-pressed="false">
+                <span>03</span> Execution
+            </button>
+            <button class="dp-step-select__button" type="button" data-process-step="3" aria-controls="dp-panel-4" aria-pressed="false">
+                <span>04</span> Handover
+            </button>
+        </div>
 
-            <!-- Step 1: Consultation -->
-            <article class="dp-step" data-reveal role="listitem">
+        <div class="dp-steps">
+            <article class="dp-step" id="dp-panel-1" data-process-panel data-reveal>
                 <div class="dp-step__image-wrap">
                     <div class="dp-step__img-circle">
                         <img src="<?= cr_e(cr_img('hallway-01.jpg')) ?>" alt="Initial consultation meeting" loading="lazy">
-                    </div>
-                    <div class="dp-step__num-ring" aria-hidden="true">
-                        <span>01</span>
                     </div>
                 </div>
                 <div class="dp-step__body">
@@ -165,10 +135,12 @@ $featured_services = array_slice($CR_SERVICES, 0, 3);
                 </div>
             </article>
 
-            <div class="dp-connector" aria-hidden="true"></div>
-
-            <!-- Step 2: Design & Planning -->
-            <article class="dp-step dp-step--alt" data-reveal role="listitem">
+            <article class="dp-step" id="dp-panel-2" data-process-panel data-reveal hidden>
+                <div class="dp-step__image-wrap">
+                    <div class="dp-step__img-circle">
+                        <img src="<?= cr_e(cr_img('study-01.jpg')) ?>" alt="Design planning and 3D visualisation" loading="lazy">
+                    </div>
+                </div>
                 <div class="dp-step__body">
                     <div class="dp-step__icon" aria-hidden="true">
                         <svg viewBox="0 0 40 40" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -187,26 +159,12 @@ $featured_services = array_slice($CR_SERVICES, 0, 3);
                         <li>Furniture &amp; lighting layouts</li>
                     </ul>
                 </div>
-                <div class="dp-step__image-wrap">
-                    <div class="dp-step__img-circle">
-                        <img src="<?= cr_e(cr_img('study-01.jpg')) ?>" alt="Design planning and 3D visualisation" loading="lazy">
-                    </div>
-                    <div class="dp-step__num-ring" aria-hidden="true">
-                        <span>02</span>
-                    </div>
-                </div>
             </article>
 
-            <div class="dp-connector" aria-hidden="true"></div>
-
-            <!-- Step 3: Execution -->
-            <article class="dp-step" data-reveal role="listitem">
+            <article class="dp-step" id="dp-panel-3" data-process-panel data-reveal hidden>
                 <div class="dp-step__image-wrap">
                     <div class="dp-step__img-circle">
                         <img src="<?= cr_e(cr_img('kitchen-01.jpg')) ?>" alt="Skilled craftsmen executing the design" loading="lazy">
-                    </div>
-                    <div class="dp-step__num-ring" aria-hidden="true">
-                        <span>03</span>
                     </div>
                 </div>
                 <div class="dp-step__body">
@@ -227,10 +185,12 @@ $featured_services = array_slice($CR_SERVICES, 0, 3);
                 </div>
             </article>
 
-            <div class="dp-connector" aria-hidden="true"></div>
-
-            <!-- Step 4: Handover -->
-            <article class="dp-step dp-step--alt" data-reveal role="listitem">
+            <article class="dp-step" id="dp-panel-4" data-process-panel data-reveal hidden>
+                <div class="dp-step__image-wrap">
+                    <div class="dp-step__img-circle">
+                        <img src="<?= cr_e(cr_img('1.jpg')) ?>" alt="Beautifully completed and handed over room" loading="lazy">
+                    </div>
+                </div>
                 <div class="dp-step__body">
                     <div class="dp-step__icon" aria-hidden="true">
                         <svg viewBox="0 0 40 40" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -246,17 +206,8 @@ $featured_services = array_slice($CR_SERVICES, 0, 3);
                         <li>Post-handover support</li>
                     </ul>
                 </div>
-                <div class="dp-step__image-wrap">
-                    <div class="dp-step__img-circle">
-                        <img src="<?= cr_e(cr_img('1.jpg')) ?>" alt="Beautifully completed and handed over room" loading="lazy">
-                    </div>
-                    <div class="dp-step__num-ring" aria-hidden="true">
-                        <span>04</span>
-                    </div>
-                </div>
             </article>
-
-        </div><!-- /dp-steps -->
+        </div>
 
         <div class="design-process__cta" data-reveal>
             <a class="btn btn-dark" href="<?= cr_e(cr_url('contact')) ?>">Start your project</a>
@@ -264,11 +215,55 @@ $featured_services = array_slice($CR_SERVICES, 0, 3);
     </div>
 </section>
 
+<!-- ===== STUDIO INTRO ===== -->
+<section class="section section-ivory studio-intro">
+    <div class="wrap split">
+        <div class="media media--portrait" data-reveal>
+            <img src="<?= cr_e(cr_img('renovation-01.jpg')) ?>" alt="Renovated drawing room with panelling, fireplace and contemporary seating" width="900" height="1125" loading="eager">
+        </div>
+        <div class="split-copy" data-reveal>
+            <span class="kicker">The studio</span>
+            <h2>Interior architecture for houses that are meant to be lived in.</h2>
+            <p>CASA RIVA plans, designs and executes interiors with a single language of proportion, material and light. The work is calm, exact and complete — from first conversation through the last object placed in the room.</p>
+            <p>Smart planning, transparent pricing and expert execution remain the measure of every project, in more than fifteen cities across India.</p>
+            <a class="btn btn-dark" href="<?= cr_e(cr_url('about')) ?>">About the studio</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== TRUSTED PARTNERS ===== -->
+<section class="partners-wrap" aria-labelledby="partners-title">
+    <div class="wrap">
+        <div class="partners" data-partners>
+            <h2 id="partners-title" class="partners-title">Our Trusted Partners</h2>
+            <div class="partners-viewport">
+                <?php foreach ($CR_PARTNER_SLIDES as $i => $slide): ?>
+                    <ul class="partners-slide<?= $i === 0 ? ' is-on' : '' ?>" data-partner-slide>
+                        <?php foreach ($slide as $partner): ?>
+                            <li>
+                                <div class="partner-logo-wrap" aria-label="<?= cr_e($partner['name']) ?>">
+                                    <div class="partner-logo-svg"><?= $partner['logo'] ?></div>
+                                    <span class="partner-logo-name"><?= cr_e($partner['name']) ?></span>
+                                </div>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endforeach; ?>
+            </div>
+            <div class="partners-dots" role="tablist" aria-label="Partner slides">
+                <?php foreach ($CR_PARTNER_SLIDES as $i => $slide): ?>
+                    <button type="button" class="partners-dot<?= $i === 0 ? ' is-on' : '' ?>" data-partner-dot aria-label="Show partner group <?= $i + 1 ?>"></button>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- ===== CTA BAND ===== -->
-<section class="section section-ink cta-band">
+<section class="section cta-band" style="--cta-image: url('<?= cr_e(cr_img('renovation-01.jpg')) ?>')">
     <div class="wrap-narrow" data-reveal>
         <span class="kicker">Consultation</span>
-        <h2>Tell us about the house.</h2>
+        <h2><span>Tell us about</span><em>the house.</em></h2>
         <p>Book a 3D design session, or send a note with the rooms you wish to change. We will reply personally with how we would begin.</p>
         <a class="btn btn-light" href="<?= cr_e(cr_url('contact')) ?>">Get Estimate</a>
     </div>
