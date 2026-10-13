@@ -43,6 +43,7 @@
         });
     }
 
+    // ── Reveal observer (data-reveal) ────────────────────────
     const reveals = document.querySelectorAll("[data-reveal]");
     if (reveals.length) {
         if (reduce || !("IntersectionObserver" in window)) {
@@ -57,9 +58,130 @@
                         }
                     });
                 },
-                { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
+                { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
             );
             reveals.forEach((el) => io.observe(el));
+        }
+    }
+
+    // ── Reveal groups (data-reveal-group) ────────────────────
+    const revealGroups = document.querySelectorAll("[data-reveal-group]");
+    if (revealGroups.length && !reduce && "IntersectionObserver" in window) {
+        const gio = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-in");
+                        gio.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.1, rootMargin: "0px 0px -5% 0px" }
+        );
+        revealGroups.forEach((el) => gio.observe(el));
+    } else if (reduce) {
+        revealGroups.forEach((el) => el.classList.add("is-in"));
+    }
+
+    // ── Gallery masonry figures — staggered ──────────────────
+    const masonryFigures = [...document.querySelectorAll(".masonry figure")];
+    if (masonryFigures.length) {
+        if (reduce || !("IntersectionObserver" in window)) {
+            masonryFigures.forEach((f) => f.classList.add("is-in"));
+        } else {
+            const mio = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry, i) => {
+                        if (entry.isIntersecting) {
+                            // small stagger per figure as they enter
+                            const idx = masonryFigures.indexOf(entry.target);
+                            const delay = (idx % 4) * 80; // 0–240ms stagger within each row
+                            setTimeout(() => entry.target.classList.add("is-in"), delay);
+                            mio.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.08, rootMargin: "0px 0px -4% 0px" }
+            );
+            masonryFigures.forEach((f) => mio.observe(f));
+        }
+    }
+
+    // ── Project cards — staggered ─────────────────────────────
+    const projectCards = [...document.querySelectorAll(".project-card")];
+    if (projectCards.length) {
+        if (reduce || !("IntersectionObserver" in window)) {
+            projectCards.forEach((c) => c.classList.add("is-in"));
+        } else {
+            const pio = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const idx = projectCards.indexOf(entry.target);
+                            const delay = (idx % 3) * 90;
+                            setTimeout(() => entry.target.classList.add("is-in"), delay);
+                            pio.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.1, rootMargin: "0px 0px -5% 0px" }
+            );
+            projectCards.forEach((c) => pio.observe(c));
+        }
+    }
+
+    // ── Footer cols ───────────────────────────────────────────
+    const footerCols = [...document.querySelectorAll(".footer-col")];
+    if (footerCols.length) {
+        if (reduce || !("IntersectionObserver" in window)) {
+            footerCols.forEach((c) => c.classList.add("is-in"));
+        } else {
+            const fio = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("is-in");
+                            fio.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.15 }
+            );
+            footerCols.forEach((c) => fio.observe(c));
+        }
+    }
+
+    // ── Footer brand ──────────────────────────────────────────
+    const footerBrand = document.querySelector(".footer-brand");
+    if (footerBrand) {
+        if (reduce || !("IntersectionObserver" in window)) {
+            footerBrand.classList.add("is-in");
+        } else {
+            const fbio = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            footerBrand.classList.add("is-in");
+                            fbio.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.15 }
+            );
+            fbio.observe(footerBrand);
+        }
+    }
+
+    // ── Home hero — trigger is-loaded after video/page ready ─
+    const hero = document.querySelector(".hero");
+    if (hero) {
+        const triggerHero = () => hero.classList.add("is-loaded");
+        if (document.readyState === "complete") {
+            requestAnimationFrame(triggerHero);
+        } else {
+            window.addEventListener("load", () => requestAnimationFrame(triggerHero), { once: true });
+            // Fallback: fire after 400ms regardless
+            setTimeout(triggerHero, 400);
         }
     }
 

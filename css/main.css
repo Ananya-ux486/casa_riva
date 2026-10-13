@@ -4212,3 +4212,333 @@ body.has-hero .site-header .btn-header:focus-visible {
     font-size: 1.75rem;
     letter-spacing: 0.02em;
 }
+
+/* ============================================================
+   ENTRANCE ANIMATIONS — SITE-WIDE
+   All driven by [data-reveal] + .is-in (set by IntersectionObserver)
+   ============================================================ */
+
+/* ── Base: every [data-reveal] starts hidden ── */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+        opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+}
+
+[data-reveal].is-in {
+    opacity: 1;
+    transform: none;
+}
+
+/* ── Stagger siblings: each child inside a reveal container ── */
+[data-reveal-group] > * {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+        opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-reveal-group].is-in > *:nth-child(1)  { opacity:1; transform:none; transition-delay:0s;     }
+[data-reveal-group].is-in > *:nth-child(2)  { opacity:1; transform:none; transition-delay:0.09s;  }
+[data-reveal-group].is-in > *:nth-child(3)  { opacity:1; transform:none; transition-delay:0.18s;  }
+[data-reveal-group].is-in > *:nth-child(4)  { opacity:1; transform:none; transition-delay:0.27s;  }
+[data-reveal-group].is-in > *:nth-child(5)  { opacity:1; transform:none; transition-delay:0.36s;  }
+[data-reveal-group].is-in > *:nth-child(6)  { opacity:1; transform:none; transition-delay:0.45s;  }
+[data-reveal-group].is-in > *:nth-child(n+7){ opacity:1; transform:none; transition-delay:0.54s;  }
+
+/* ── Slide from left (images / media) ── */
+[data-reveal="left"] {
+    transform: translateX(-36px) translateY(0);
+}
+[data-reveal="left"].is-in {
+    transform: none;
+}
+
+/* ── Slide from right (copy blocks) ── */
+[data-reveal="right"] {
+    transform: translateX(36px) translateY(0);
+}
+[data-reveal="right"].is-in {
+    transform: none;
+}
+
+/* ── Scale up (cards, gallery tiles) ── */
+[data-reveal="scale"] {
+    transform: scale(0.94) translateY(18px);
+    transition:
+        opacity 0.68s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.68s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-reveal="scale"].is-in {
+    transform: scale(1) translateY(0);
+}
+
+/* ── Fade only (kickers, labels, subtle elements) ── */
+[data-reveal="fade"] {
+    transform: none;
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-reveal="fade"].is-in {
+    opacity: 1;
+}
+
+/* ── Delay utilities ── */
+[data-delay="1"] { transition-delay: 0.08s; }
+[data-delay="2"] { transition-delay: 0.16s; }
+[data-delay="3"] { transition-delay: 0.24s; }
+[data-delay="4"] { transition-delay: 0.32s; }
+[data-delay="5"] { transition-delay: 0.40s; }
+[data-delay="6"] { transition-delay: 0.48s; }
+
+/* ── Page hero — staggered entrance ── */
+.page-hero__copy .kicker {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+.page-hero__copy h1 {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.75s 0.12s var(--ease), transform 0.75s 0.12s var(--ease);
+}
+.page-hero__copy p {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s 0.24s var(--ease), transform 0.7s 0.24s var(--ease);
+}
+.page-hero__inner.is-in .page-hero__copy .kicker,
+.page-hero__inner.is-in .page-hero__copy h1,
+.page-hero__inner.is-in .page-hero__copy p {
+    opacity: 1;
+    transform: none;
+}
+
+/* Aside stats — stagger in from right */
+.page-hero__aside {
+    opacity: 0;
+    transform: translateX(28px);
+    transition: opacity 0.75s 0.3s var(--ease), transform 0.75s 0.3s var(--ease);
+}
+.page-hero__inner.is-in .page-hero__aside {
+    opacity: 1;
+    transform: none;
+}
+
+/* ── Home hero text stagger ── */
+.hero__copy .kicker {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.55s 0.1s var(--ease), transform 0.55s 0.1s var(--ease);
+    animation: none !important; /* override if any conflict */
+}
+.hero__copy h1 {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.75s 0.22s var(--ease), transform 0.75s 0.22s var(--ease);
+}
+.hero__copy p {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s 0.36s var(--ease), transform 0.7s 0.36s var(--ease);
+}
+.hero__copy .hero__actions {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.65s 0.48s var(--ease), transform 0.65s 0.48s var(--ease);
+}
+.hero.is-loaded .hero__copy .kicker,
+.hero.is-loaded .hero__copy h1,
+.hero.is-loaded .hero__copy p,
+.hero.is-loaded .hero__copy .hero__actions {
+    opacity: 1;
+    transform: none;
+}
+
+/* ── Gallery masonry — each figure animates in ── */
+.masonry figure {
+    opacity: 0;
+    transform: translateY(30px) scale(0.97);
+    transition:
+        opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.masonry figure.is-in {
+    opacity: 1;
+    transform: none;
+}
+
+/* ── Project cards ── */
+.project-card {
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+        opacity 0.68s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.68s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.project-card.is-in {
+    opacity: 1;
+    transform: none;
+}
+
+/* ── Service split articles — alternate left/right ── */
+.service-list .split:nth-child(odd)  .media  { transform: translateX(-30px); }
+.service-list .split:nth-child(even) .media  { transform: translateX(30px);  }
+.service-list .split .media {
+    opacity: 0;
+    transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
+}
+.service-list .split .media.is-in {
+    opacity: 1;
+    transform: none;
+}
+
+/* ── Contact form card slide up ── */
+.contact-card {
+    transition:
+        opacity 0.7s 0.1s var(--ease),
+        transform 0.7s 0.1s var(--ease),
+        border-color 0.35s var(--ease),
+        box-shadow 0.35s var(--ease);
+}
+
+/* ── Section headings ── */
+.section-head h2,
+.studio-intro h2,
+.split-copy h2 {
+    overflow: hidden;
+}
+
+/* ── Footer brand animate in ── */
+.footer-brand {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.footer-brand.is-in {
+    opacity: 1;
+    transform: none;
+}
+
+/* ── Hover lift on cards & project tiles ── */
+.project-card,
+.service-card,
+.masonry figure {
+    transition:
+        opacity 0.68s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.68s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.35s var(--ease);
+}
+
+.project-card:hover,
+.service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(23, 21, 18, 0.14);
+}
+
+.project-card.is-in:hover,
+.service-card.is-in:hover {
+    transform: translateY(-6px) !important;
+}
+
+.masonry figure:hover {
+    transform: scale(1.02);
+    box-shadow: 0 16px 40px rgba(23, 21, 18, 0.18);
+    z-index: 2;
+}
+
+.masonry figure.is-in:hover {
+    transform: scale(1.02) !important;
+}
+
+/* ── Smooth image zoom on hover inside cards ── */
+.project-card .media img,
+.service-card .media img,
+.masonry figure img {
+    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-card:hover .media img,
+.service-card:hover .media img {
+    transform: scale(1.06);
+}
+
+.masonry figure:hover img {
+    transform: scale(1.05);
+}
+
+/* ── Nav link underline animation ── */
+.nav-desktop a::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.35s var(--ease);
+}
+.nav-desktop a:hover::after,
+.nav-desktop a[aria-current="page"]::after {
+    width: 100%;
+}
+
+/* ── Footer col animate in ── */
+.footer-col {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
+}
+.footer-col.is-in {
+    opacity: 1;
+    transform: none;
+}
+.footer-col:nth-child(1) { transition-delay: 0s;    }
+.footer-col:nth-child(2) { transition-delay: 0.1s;  }
+.footer-col:nth-child(3) { transition-delay: 0.18s; }
+.footer-col:nth-child(4) { transition-delay: 0.26s; }
+
+/* ── Kicker line ── */
+.page-hero__copy .kicker::after {
+    transition: width 0.6s 0.5s var(--ease);
+    width: 0;
+}
+.page-hero__inner.is-in .page-hero__copy .kicker::after {
+    width: 2.4rem;
+}
+
+/* ── Scroll line on page hero ── */
+.page-hero__scroll-line {
+    opacity: 0;
+    transition: opacity 0.8s 0.8s var(--ease);
+}
+.page-hero__inner.is-in ~ .page-hero__scroll-line,
+.page-hero .page-hero__scroll-line {
+    opacity: 1;
+}
+
+/* ── Reduce motion: disable all ── */
+@media (prefers-reduced-motion: reduce) {
+    [data-reveal],
+    [data-reveal-group] > *,
+    .page-hero__copy .kicker,
+    .page-hero__copy h1,
+    .page-hero__copy p,
+    .page-hero__aside,
+    .hero__copy .kicker,
+    .hero__copy h1,
+    .hero__copy p,
+    .hero__copy .hero__actions,
+    .masonry figure,
+    .project-card,
+    .service-list .split .media,
+    .footer-brand,
+    .footer-col {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}

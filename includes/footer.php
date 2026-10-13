@@ -2,7 +2,7 @@
 
 <footer class="site-footer">
     <div class="footer-top">
-        <div class="footer-brand">
+        <div class="footer-brand" data-reveal>
             <a class="wordmark wordmark--footer" href="<?= cr_e(cr_url('')) ?>">CASA <em>RIVA</em></a>
             <p>Interior architecture and interior design. Rooms composed for living — in a British and European register of light, material and proportion.</p>
 

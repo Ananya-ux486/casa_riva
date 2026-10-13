@@ -36,7 +36,7 @@ $categories = array_values(array_unique(array_map(static fn(array $p): string =>
 
 <section class="section">
     <div class="wrap">
-        <div class="filters" role="toolbar" aria-label="Project categories">
+        <div class="filters" role="toolbar" aria-label="Project categories" data-reveal>
             <button type="button" class="is-on" data-filter="all">All</button>
             <?php foreach ($categories as $category): ?>
                 <button type="button" data-filter="<?= cr_e($category) ?>"><?= cr_e($category) ?></button>

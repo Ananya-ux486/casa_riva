@@ -35,7 +35,7 @@ require_once __DIR__ . '/includes/header.php';
 
 <section class="section">
     <div class="wrap">
-        <div class="masonry">
+        <div class="masonry" data-reveal-group>
             <?php foreach ($CR_GALLERY as $item): ?>
                 <figure tabindex="0" data-lightbox-item data-full="<?= cr_e(cr_img($item['file'])) ?>" data-caption="<?= cr_e($item['caption']) ?>">
                     <img src="<?= cr_e(cr_img($item['file'])) ?>" alt="<?= cr_e($item['alt']) ?>" width="900" height="1100" loading="lazy">

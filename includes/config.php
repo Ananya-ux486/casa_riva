@@ -52,12 +52,8 @@ function cr_video(): string
     return cr_asset('assests/videos/video1.mp4');
 }
 
-/**
- * TODO: replace with CASA RIVA's real WhatsApp business number (digits only, country code first, no + or spaces).
- * Example for an Indian mobile: '91' . '9876543210'
- */
 if (!defined('CR_WHATSAPP_NUMBER')) {
-    define('CR_WHATSAPP_NUMBER', '911234567890');
+    define('CR_WHATSAPP_NUMBER', '919005952202');
 }
 
 function cr_whatsapp_link(string $message = 'Hello CASA RIVA, I would like to book a design session.'): string
